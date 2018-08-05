@@ -7,13 +7,23 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/bt_play"
+        android:id="@+id/bt_play_wav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:text="Play"
+        android:text="WAV"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/bt_play_pcm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="PCM(Raw)"
+        app:layout_constraintStart_toEndOf="@+id/bt_play_wav"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -25,6 +35,6 @@
         android:layout_marginTop="8dp"
         android:text="Stop"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_play" />
+        app:layout_constraintTop_toBottomOf="@+id/bt_play_wav" />
 
 </android.support.constraint.ConstraintLayout>

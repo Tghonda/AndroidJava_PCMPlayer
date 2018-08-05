@@ -5,6 +5,10 @@ import android.media.AudioFormat;
 import android.media.AudioTrack;
 import java.io.IOException;
 
+interface AudioDataReader {
+    int getPcmData(short[] buf) throws IOException;
+}
+
 public class PcmAudioPlayer {
     private static final int AUDIO_FORMAT = AudioFormat.ENCODING_PCM_16BIT;
     private static final int CHANNEL_CONFIG = AudioFormat.CHANNEL_OUT_MONO;
@@ -27,7 +31,7 @@ public class PcmAudioPlayer {
                 .build();
     }
 
-    public void play(final WavReader wavReader) {
+    public void play(final AudioDataReader wavReader) {
 
         threadPlayer = new Thread() {
             @Override

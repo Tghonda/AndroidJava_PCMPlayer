@@ -9,7 +9,7 @@ import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.util.IllegalFormatException;
 
-public class WavReader {
+public class WavReader implements AudioDataReader {
     private final int CHANK_RIFF = 0x52494646;      //  'RIFF'
     private final int CHANK_WAVE = 0x57415645;      //  'WAVE'
     private final int CHANK_fmt  = 0x666d7420;      //  'fmt '

@@ -1,11 +1,9 @@
 package jp.co.orifice.pcm_player;
 
-import android.content.res.AssetFileDescriptor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private PcmAudioPlayer player = new PcmAudioPlayer(48000);
     private WavReader wav;
+    private PcmReader pcm;
 
     /********************************************************************************************
      Activity Life Cycle
@@ -24,7 +23,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findViewById(R.id.bt_play).setOnClickListener(onClickPlay);
+        findViewById(R.id.bt_play_wav).setOnClickListener(onClickPlayWAV);
+        findViewById(R.id.bt_play_pcm).setOnClickListener(onClickPlayPCM);
+
         findViewById(R.id.bt_stop).setOnClickListener(onClickStop);
 
     }
@@ -64,13 +65,27 @@ public class MainActivity extends AppCompatActivity {
      Button Actions
      ********************************************************************************************/
     // Button Click.
-    View.OnClickListener onClickPlay = new View.OnClickListener() {
+    View.OnClickListener onClickPlayWAV = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             try {
                 InputStream is = getAssets().open("audio_test.wav");
                 wav = new WavReader(is);
                 player.play(wav);
+            } catch (IOException | RuntimeException e) {
+                e.printStackTrace();
+                return;
+            }
+
+        }
+    };
+    View.OnClickListener onClickPlayPCM = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try {
+                InputStream is = getAssets().open("audio_test.pcm");
+                pcm = new PcmReader(is);
+                player.play(pcm);
             } catch (IOException | RuntimeException e) {
                 e.printStackTrace();
                 return;
